@@ -1,0 +1,2 @@
+# modmail-plugins
+Some plugins
