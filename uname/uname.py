@@ -1,5 +1,5 @@
 import discord
-from os import system
+import os
 from discord.ext import commands
 
 class Say(commands.Cog):
@@ -9,7 +9,10 @@ class Say(commands.Cog):
     @commands.command()
     async def uname(self, ctx, *, message):
         """A buggy implimentation of uname from GNU Coreutils."""
-        await ctx.send("test")
+        command = "uname " + message
+        stream = os.popen("command")
+        output = stream.readlines()
+        await ctx.send(output)
 
 def setup(bot):
     bot.add_cog(Say(bot))
