@@ -11,8 +11,8 @@ class Say(commands.Cog):
         """A buggy implimentation of uname from GNU Coreutils."""
         command = "uname " + message + " 2>&1"
         stream = os.popen(command)
-        output = stream.readlines()
-        output.strip()
+        output = stream.read()
+        formatted_output = output.replace('\\n', '\n').replace('\\t', '\t')
         await ctx.send(output)
 
 def setup(bot):
