@@ -8,8 +8,8 @@ class Say(commands.Cog):
         
     @commands.command()
     async def uname(self, ctx, *, message):
-        """Similar to echo, but repeats the output several times."""
-        await ctx.send(system("uname -vrms"))
+        """A buggy implimentation of uname from GNU Coreutils."""
+        await ctx.send("test")
 
 def setup(bot):
     bot.add_cog(Say(bot))
