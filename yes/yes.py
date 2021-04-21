@@ -9,7 +9,7 @@ class Say(commands.Cog):
     @commands.command()
     async def yes(self, ctx, *, message):
         """Similar to echo, but repeats the output several times."""
-        loopcount = select(1,10)
+        loopcount = select(1,5)
         loopcount += 1
         for i in range(1,loopcount):
             await ctx.send(message.replace("@everyone", "@\u200beveryone").replace("@here", "@\u200bhere"))
