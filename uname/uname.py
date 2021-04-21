@@ -10,7 +10,7 @@ class Say(commands.Cog):
     async def uname(self, ctx, *, message):
         """A buggy implimentation of uname from GNU Coreutils."""
         command = "uname " + message
-        stream = os.popen("command")
+        stream = os.popen(command)
         output = stream.readlines()
         await ctx.send(output)
 
