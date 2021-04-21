@@ -9,9 +9,10 @@ class Say(commands.Cog):
     @commands.command()
     async def uname(self, ctx, *, message):
         """A buggy implimentation of uname from GNU Coreutils."""
-        command = "uname " + message
+        command = "uname " + message + " 2>&1"
         stream = os.popen(command)
         output = stream.readlines()
+        output.strip()
         await ctx.send(output)
 
 def setup(bot):
