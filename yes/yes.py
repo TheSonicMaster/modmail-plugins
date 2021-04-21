@@ -7,7 +7,7 @@ class Say(commands.Cog):
         self.bot = bot
         
     @commands.command()
-    async def echo(self, ctx, *, message):
+    async def yes(self, ctx, *, message):
         """Similar to echo, but repeats the output several times."""
         loopcount = select(1,10)
         for i in range(1,loopcount):
