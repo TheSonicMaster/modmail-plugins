@@ -12,7 +12,6 @@ class Say(commands.Cog):
         command = "uname " + message + " 2>&1"
         stream = os.popen(command)
         output = stream.read()
-        formatted_output = output.replace('\\n', '\n').replace('\\t', '\t')
         await ctx.send(output)
 
 def setup(bot):
