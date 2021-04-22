@@ -10,7 +10,6 @@ class Say(commands.Cog):
     async def yes(self, ctx, *, message):
         """Similar to echo, but repeats the output several times."""
         loopcount = select(1,10)
-        loopcount += 1
         final = message
         for i in range(1,loopcount):
             final = final + "\n" + message
