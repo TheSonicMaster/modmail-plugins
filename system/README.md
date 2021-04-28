@@ -9,5 +9,6 @@ e.g.
 +system uname -vrms
 +system curl -O https://some_website/some_file
 +system chmod --version
+```
 # Example
 ![](system-example.png)
