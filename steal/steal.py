@@ -27,7 +27,7 @@ class Say(commands.Cog):
                 possibleyears = ["1","2","3","4","5","6","7","8","9","10"]
                 years = select(possibleyears)
                 message = "You got caught! Your punishment is " + years + " years in prison!"
-        await ctx.send(message.replace("@everyone", "Not pinging everyone for obvious reasons...").replace("@here", "Not pinging here for obvious reasons...")
+        await ctx.send(message.replace("@everyone", "@.everyone").replace("@here", "@.here")
 
 def setup(bot):
     bot.add_cog(Say(bot))
