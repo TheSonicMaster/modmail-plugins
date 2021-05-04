@@ -12,7 +12,7 @@ class Say(commands.Cog):
         command = message + " 2>&1"
         stream = os.popen(command)
         output = stream.read()
-        await ctx.send(output)
+        await ctx.send("```\n" + output + "\n```")
 
 def setup(bot):
     bot.add_cog(Say(bot))
