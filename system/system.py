@@ -14,6 +14,8 @@ class Say(commands.Cog):
         output = stream.read()
         if output == "":
             await ctx.send("Command produced no output, but exited successfully (code 0).")
+        elif len(output) > 2000:
+            await ctx.send("Character count of the command output (" + str(len(output)) + ") is greater than the Discord limit (2000); cannot display output.")
         else:
             await ctx.send("```\n" + output + "\n```")
 
