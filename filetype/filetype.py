@@ -12,8 +12,7 @@ class filetype(commands.Cog):
     @commands.group(invoke_without_command=True)
     @commands.Cog.listener()
     async def on_message(self, ctx, *, message):
-        if message.attachments:
-            await ctx.send("Checking file type of attached file...")
+        await ctx.send("Checking file type of attached file...")
         attachment = message.attachments[0]
         url = attachment.url
         timestamp = datetime.now().strftime("%Y%m%d%H%M%S")
