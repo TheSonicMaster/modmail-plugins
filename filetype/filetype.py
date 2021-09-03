@@ -4,17 +4,14 @@ from discord.ext import commands
 from datetime import datetime
 
 class filetype(commands.Cog):
+    """Detect file type of attached files."""
     def __init__(self, bot):
         self.bot = bot
-        self.enabled = True
     
     @commands.group(invoke_without_command=True)
     @commands.Cog.listener()
-    async def on_message(self, ctx):
-        """Detect file type of attached files."""
-        if not ctx.message.attachments:
-            return
-        attachment = ctx.message.attachments[0]
+    async def on_message(self, ctx, *, message):
+        attachment = message.attachments[0]
         url = attachment.url
         timestamp = datetime.now().strftime("%Y%m%d%H%M%S")
         file = "/tmp/" + timestamp
