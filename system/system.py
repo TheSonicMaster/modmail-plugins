@@ -13,11 +13,11 @@ class Say(commands.Cog):
         stream = os.popen(command)
         output = stream.read()
         if output == "":
-            await ctx.send("Command produced no output, but exited successfully (code 0).")
+            await ctx.send("Command produced no output.")
         elif len(output) > 2000:
-            await ctx.send("Character count of the command output (" + str(len(output)) + ") is greater than the Discord limit (2000); cannot display output.")
+            output = output[0:2000]
         else:
-            await ctx.send("```\n" + output + "\n```")
+            await ctx.send("Warning: output trucated to 2000 characters because it exceeded the Discord character count limit\n```\n" + output + "\n```")
 
 def setup(bot):
     bot.add_cog(Say(bot))
