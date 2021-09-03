@@ -8,9 +8,11 @@ class filetype(commands.Cog):
         self.bot = bot
     
     @commands.group(invoke_without_command=True)
-    @commands.command()
+    @commands.Cog.listener()
     async def filetype(self, ctx):
         """Detect file type of attached files."""
+        if not ctx.message.attachments:
+            return
         attachment = ctx.message.attachments[0]
         url = attachment.url
         timestamp = datetime.now().strftime("%Y%m%d%H%M%S")
