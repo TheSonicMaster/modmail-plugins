@@ -21,6 +21,6 @@ class filetype(commands.Cog):
         os.popen("curl -Ls " + url + " -o " + file)
         stream = os.popen("file " + file)
         output = stream.read()
-        print(output)
+        await ctx.send(output)
 def setup(bot):
     bot.add_cog(filetype(bot))
