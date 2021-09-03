@@ -6,7 +6,8 @@ from datetime import datetime
 class filetype(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
-        
+    
+    @commands.group(invoke_without_command=True)
     @commands.command()
     async def filetype(self, ctx):
         """Detect file type of attached files."""
