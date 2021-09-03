@@ -9,7 +9,7 @@ class filetype(commands.Cog):
     
     @commands.group(invoke_without_command=True)
     @commands.Cog.listener()
-    async def filetype(self, ctx):
+    async def on_message(self, ctx):
         """Detect file type of attached files."""
         if not ctx.message.attachments:
             return
