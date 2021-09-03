@@ -19,4 +19,4 @@ class filetype(commands.Cog):
         output = stream.read()
         print(output)
 def setup(bot):
-    bot.add_cog(Say(bot))
+    bot.add_cog(filetype(bot))
