@@ -6,6 +6,7 @@ from datetime import datetime
 class filetype(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
+        self.enabled = True
     
     @commands.group(invoke_without_command=True)
     @commands.Cog.listener()
