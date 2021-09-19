@@ -11,7 +11,15 @@ class Say(commands.Cog):
         possibleactions = ["steal","steal","getcaught"]
         action = select(possibleactions)
         if action == "steal":
-            message = "You successfully stole " + message + "!"
+            super = message.lower()
+            if "sonic" in super:
+                print("You got caught. Everything you stole in the past has been confiscated!")
+            elif "owner" in super:
+                print("You got caught. Everything you stole in the past has been confiscated!")
+            elif "admin" in super:
+                print("You got caught. Everything you stole in the past has been confiscated!")
+            else:
+                message = "You successfully stole " + message + "!"
         elif action == "getcaught":
             punishments = ["fine","comserv","prison","serverban"]
             punishment = select(punishments)
