@@ -14,7 +14,7 @@ class Say(commands.Cog):
         final = message
         for i in range(1,loopcount):
             final = final + "\n" + message
-        final = final + "\n**__Command 'yes' run by " + name + "__**\n"
+        final = final + "\nCommand `yes` run by " + name
         await ctx.send(final.replace("@everyone", "@\u200beveryone").replace("@here", "@\u200bhere"))
 
 def setup(bot):
