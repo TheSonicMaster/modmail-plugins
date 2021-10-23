@@ -15,8 +15,11 @@ class Say(commands.Cog):
         if output == "":
             await ctx.send("Command produced no output.")
         elif len(output) > 2000:
-            output = output[0:1850]
-            await ctx.send("Warning: output trucated to 1850 characters because it exceeded the Discord character count limit of 2000.\n```\n" + output + "\n```")
+            outfile = open("output.txt","w")
+            outfile.write(output)
+            outfile.close()
+            await ctx.send("The output was greater than 2000 characters, so I have attached it as a text document.")
+            await ctx.send(file=discord.File(f"output.txt"))
         else:
             await ctx.send("```\n" + output + "\n```")
 def setup(bot):
