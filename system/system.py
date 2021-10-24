@@ -9,9 +9,10 @@ class Say(commands.Cog):
     @commands.command()
     async def system(self, ctx, *, message):
         """Run system (shell) commands directly from Discord! By The Sonic Master."""
-        command = message + " 2>&1"
-        stream = os.popen(command)
-        output = stream.read()
+        async with ctx.typing():
+            command = message + " 2>&1"
+            stream = os.popen(command)
+            output = stream.read()
         if output == "":
             await ctx.send("Command produced no output.")
         elif len(output) > 2000:
