@@ -80,7 +80,7 @@ class Leveling(Cog):
 
     @level.command(name="info")
     @has_permissions(PermissionLevel.REGULAR)
-    async def info(self, ctx: Context, user: User = None) -> None:
+    async def info(self, ctx: Context, *, user: User = None) -> None:
         """Check someone's current amount of gold, exp and level."""
 
         user: User = user if user is not None else ctx.author
