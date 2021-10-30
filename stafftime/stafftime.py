@@ -34,11 +34,11 @@ class stafftime(commands.Cog):
         elif "<@494884004068327425>" in message.content.lower():
             thesonicmasterpy = pytz.timezone('Europe/London')
             thesonicmaster = datetime.datetime.now(thesonicmasterpy).strftime("%H:%M (%I:%M %p)")
-            await message.channel.send(f"The current time of TheSonicMaster is {thesonicmaster}. Depending on this time you may need to be patient for a response.")
+            await message.channel.send(f"Please do not ping The Sonic Master. It is considered rude and will not make The Sonic Master respond any faster, especially if The Sonic Master is offline. Be patient for a response and do not expect one immediately.\n\nThe current time of The Sonic Master is {thesonicmaster} (Timezones Exist).")
         elif "<@!494884004068327425>" in message.content.lower():
             thesonicmasterpy = pytz.timezone('Europe/London')
             thesonicmaster = datetime.datetime.now(thesonicmasterpy).strftime("%H:%M (%I:%M %p)")
-            await message.channel.send(f"The current time of TheSonicMaster is {thesonicmaster}. Depending on this time you may need to be patient for a response.")
+            await message.channel.send(f"Please do not ping The Sonic Master. It is considered rude and will not make The Sonic Master respond any faster, especially if The Sonic Master is offline. Be patient for a response and do not expect one immediately.\n\nThe current time of The Sonic Master is {thesonicmaster}. (Timezones Exist).")
         elif "<@622588567188668416>" in message.content.lower():
             amdreepy = pytz.timezone('America/Chicago')
             amdree = datetime.datetime.now(amdreepy).strftime("%H:%M (%I:%M %p)")
