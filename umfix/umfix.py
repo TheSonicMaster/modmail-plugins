@@ -15,7 +15,10 @@ class umfix(commands.Cog):
                 elif i.startswith("um"):
                     await message.delete()
                     await message.author.send("Hey you used um again stop it")
+                elif i.startswith("cuz"):
+                    await message.delete()
+                    await message.author.send("Hey you used cuz again stop it")
                     
  
 def setup(bot):
-    bot.add_cog(stafftime(bot))
+    bot.add_cog(umfix(bot))
