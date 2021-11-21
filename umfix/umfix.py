@@ -9,13 +9,13 @@ class umfix(commands.Cog):
         if message.author.id == 735550905721684098:
             words = message.content.lower().split(" ")
             for word in words:
-                if i.startswith("uh"):
+                if word.startswith("uh"):
                     await message.delete()
                     await message.author.send("Hey you used uh again stop it")
-                elif i.startswith("um"):
+                elif word.startswith("um"):
                     await message.delete()
                     await message.author.send("Hey you used um again stop it")
-                elif i.startswith("cuz"):
+                elif word.startswith("cuz"):
                     await message.delete()
                     await message.author.send("Hey you used cuz again stop it")
                     
