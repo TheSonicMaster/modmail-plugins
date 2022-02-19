@@ -47,7 +47,7 @@ class ipgrabdetector(commands.Cog):
                 break
                 
     @commands.Cog.listener()
-    async def on_message_edit(before, after):
+    async def on_message_edit(self, before, after):
         for link in links:
             if link in after.content:
                 await after.delete()
