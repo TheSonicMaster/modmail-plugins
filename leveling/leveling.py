@@ -25,7 +25,8 @@ class Leveling(Cog):
     async def on_message(self, message: Message) -> None:
         if message.author.bot:
             return
-
+        if message.channel.id == 671069603048325131:
+            return
         try:
             amount = (await self.db.find_one({"_id": "leveling-config"}))["amount_per_message"]
         except (KeyError, TypeError):
