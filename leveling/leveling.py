@@ -4,6 +4,8 @@ Written by Papiersnipper.
 All rights reserved.
 """
 
+import discord
+
 from discord import Embed, Message, User
 from discord.ext.commands import Bot, Cog, Context, group
 from motor.motor_asyncio import AsyncIOMotorCollection
@@ -27,7 +29,7 @@ class Leveling(Cog):
             return
         if message.channel.id == 671069603048325131:
             return
-        if isinstance(ctx.channel, discord.channel.DMChannel):
+        if isinstance(message.channel, discord.channel.DMChannel):
             return
         try:
             amount = (await self.db.find_one({"_id": "leveling-config"}))["amount_per_message"]

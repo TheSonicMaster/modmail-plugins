@@ -67,6 +67,9 @@ class Polls(commands.Cog):
 
             if entry.clean_content.startswith(f"{ctx.prefix}done"):
                 break
+                
+            if entry.clean_content.startswith(f"{ctx.prefix}cancel"):
+                return
 
             answers.append((to_emoji(i), entry.clean_content))
 
