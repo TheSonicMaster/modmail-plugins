@@ -12,6 +12,9 @@ from datetime import datetime
 url = "https://raw.githubusercontent.com/TheSonicMaster/modmail-plugins/master/profanitydoneright/wordlist.txt"
 words = get(url).text.split("\n")
 
+# For later.
+_reserved = "!\"#%&'()*+,-./:;<=>?@[\\]^_`{|}~"
+
 class profanitydoneright(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
@@ -19,7 +22,7 @@ class profanitydoneright(commands.Cog):
     @commands.Cog.listener()
     async def on_message(self, message):
         for word in words:
-            for uword in message.content.lower().strip("!\"#%&'()*+,-./:;<=>?@[\\]^_`{|}~").split(" "):
+            for uword in message.content.lower().split(" "):
                 if uword == word:
                     await message.delete()
                     await message.channel.send(f"{message.author.mention} No profanity allowed.", delete_after=3)
@@ -32,7 +35,7 @@ class profanitydoneright(commands.Cog):
     @commands.Cog.listener()
     async def on_message_edit(self, orig, message):
         for word in words:
-            for uword in message.content.lower().strip("!\"#%&'()*+,-./:;<=>?@[\\]^_`{|}~").split(" "):
+            for uword in message.content.lower().split(" "):
                 if uword == word:
                     await message.delete()
                     await message.channel.send(f"{message.author.mention} No profanity allowed.", delete_after=3)
