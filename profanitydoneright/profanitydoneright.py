@@ -22,12 +22,12 @@ class profanitydoneright(commands.Cog):
             for uword in message.content.lower().strip("!\"#%&'()*+,-./:;<=>?@[\\]^_`{|}~").split(" "):
                 if uword == word:
                     await message.delete()
-                    await after.channel.send(f"{after.author.mention} No profanity allowed.", delete_after=3)
+                    await message.channel.send(f"{message.author.mention} No profanity allowed.", delete_after=3)
                     log = discord.Embed(color=self.bot.main_color, description="**Profanity detected and deleted at** " + message.channel.mention + "\n" + word)
                     log.set_author(name=message.author.name, icon_url=message.author.avatar_url)
                     log.timestamp = datetime.utcnow()
                     await self.bot.get_channel(611613073039687701).send(embed=log)
-                    break
+                    return
 
     @commands.Cog.listener()
     async def on_message_edit(self, orig, message):
@@ -35,12 +35,12 @@ class profanitydoneright(commands.Cog):
             for uword in message.content.lower().strip("!\"#%&'()*+,-./:;<=>?@[\\]^_`{|}~").split(" "):
                 if uword == word:
                     await message.delete()
-                    await after.channel.send(f"{after.author.mention} No profanity allowed.", delete_after=3)
+                    await message.channel.send(f"{message.author.mention} No profanity allowed.", delete_after=3)
                     log = discord.Embed(color=self.bot.main_color, description="**Profanity detected and deleted at** " + message.channel.mention + "\n" + word)
                     log.set_author(name=message.author.name, icon_url=message.author.avatar_url)
                     log.timestamp = datetime.utcnow()
                     await self.bot.get_channel(611613073039687701).send(embed=log)
-                    break
+                    return
 
 def setup(bot):
     bot.add_cog(profanitydoneright(bot))
