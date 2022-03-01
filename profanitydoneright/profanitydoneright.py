@@ -5,11 +5,12 @@
 # Required modules.
 import discord
 from discord.ext import commands
+from requests import get
 from datetime import datetime
 
-# Profane words.
-with open("wordlist.txt") as file:
-    words = file.read().splitlines()
+# Load list of profane words.
+url = "https://raw.githubusercontent.com/TheSonicMaster/modmail-plugins/master/profanitydoneright/wordlist.txt"
+words = get(url).text.split("\n")
 
 # Log channel.
 logchannel = discord.utils.get(ctx.guild.text_channels, name = "modlog")
