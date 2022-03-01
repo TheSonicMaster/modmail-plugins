@@ -12,9 +12,6 @@ from datetime import datetime
 url = "https://raw.githubusercontent.com/TheSonicMaster/modmail-plugins/master/profanitydoneright/wordlist.txt"
 words = get(url).text.split("\n")
 
-# Log channel.
-logchannel = discord.utils.get(ctx.guild.text_channels, name = "modlog")
-
 class profanitydoneright(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
@@ -29,7 +26,7 @@ class profanitydoneright(commands.Cog):
                     log = discord.Embed(color=self.bot.main_color, description="**Profanity detected and deleted at** " + message.channel.mention + "\n" + word)
                     log.set_author(name=message.author.name, icon_url=message.author.avatar_url)
                     log.timestamp = datetime.utcnow()
-                    await self.bot.get_channel(logchannel).send(embed=log)
+                    await self.bot.get_channel(611613073039687701).send(embed=log)
                     break
 
     @commands.Cog.listener()
@@ -42,7 +39,7 @@ class profanitydoneright(commands.Cog):
                     log = discord.Embed(color=self.bot.main_color, description="**Profanity detected and deleted at** " + message.channel.mention + "\n" + word)
                     log.set_author(name=message.author.name, icon_url=message.author.avatar_url)
                     log.timestamp = datetime.utcnow()
-                    await self.bot.get_channel(logchannel).send(embed=log)
+                    await self.bot.get_channel(611613073039687701).send(embed=log)
                     break
 
 def setup(bot):
