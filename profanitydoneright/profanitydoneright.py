@@ -14,8 +14,8 @@ words = get(url).text.split("\n")
 # Trailing newline messes things up.
 words.pop()
 
-# For later.
-_reserved = "!\"#%&'()*+,-./:;<=>?@[\\]^_`{|}~"
+# Strip these out to prevent bypassing.
+stripchars = "!\"#%&'()*+,-./:;<=>?@[\\]^_`{|}~"
 
 class profanitydoneright(commands.Cog):
     def __init__(self, bot):
@@ -25,10 +25,11 @@ class profanitydoneright(commands.Cog):
     async def on_message(self, message):
         for word in words:
             for uword in message.content.lower().split(" "):
+                uword = uword.strip(stripchars)
                 if uword == word:
                     await message.delete()
                     await message.channel.send(f"{message.author.mention} No profanity allowed.", delete_after=3)
-                    log = discord.Embed(color=self.bot.main_color, description="**Profanity detected and deleted at** " + message.channel.mention + "\n" + word)
+                    log = discord.Embed(color=self.bot.main_color, description="**Profanity (" + word + ") detected and deleted at** " + message.channel.mention + "\n" + message.content)
                     log.set_author(name=message.author.name, icon_url=message.author.avatar_url)
                     log.timestamp = datetime.utcnow()
                     await self.bot.get_channel(611613073039687701).send(embed=log)
@@ -38,10 +39,11 @@ class profanitydoneright(commands.Cog):
     async def on_message_edit(self, orig, message):
         for word in words:
             for uword in message.content.lower().split(" "):
+                uword = uword.strip(stripchars)
                 if uword == word:
                     await message.delete()
                     await message.channel.send(f"{message.author.mention} No profanity allowed.", delete_after=3)
-                    log = discord.Embed(color=self.bot.main_color, description="**Profanity detected and deleted at** " + message.channel.mention + "\n" + word)
+                    log = discord.Embed(color=self.bot.main_color, description="**Profanity (" + word + ") detected and deleted at** " + message.channel.mention + "\n" + message.content)
                     log.set_author(name=message.author.name, icon_url=message.author.avatar_url)
                     log.timestamp = datetime.utcnow()
                     await self.bot.get_channel(611613073039687701).send(embed=log)
