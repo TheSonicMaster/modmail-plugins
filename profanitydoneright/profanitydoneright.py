@@ -11,6 +11,8 @@ from datetime import datetime
 # Load list of profane words.
 url = "https://raw.githubusercontent.com/TheSonicMaster/modmail-plugins/master/profanitydoneright/wordlist.txt"
 words = get(url).text.split("\n")
+# Trailing newline messes things up.
+words.pop()
 
 # For later.
 _reserved = "!\"#%&'()*+,-./:;<=>?@[\\]^_`{|}~"
