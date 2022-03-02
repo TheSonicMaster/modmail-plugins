@@ -27,7 +27,7 @@ class profanitydoneright(commands.Cog):
     @commands.Cog.listener()
     async def on_message(self, message):
         for chan in safechannels:
-            if message.channel.id == chan
+            if message.channel.id == chan:
                 return
         for word in words:
             for uword in message.content.lower().split(" "):
