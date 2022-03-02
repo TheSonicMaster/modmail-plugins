@@ -14,6 +14,9 @@ words = get(url).text.split("\n")
 # Trailing newline messes things up.
 words.pop()
 
+# Whitelisted channels.
+safechannels = [639525202732253204, 804090051285352508, 583379256441045012, 583379256441045012, 611613073039687701]
+
 # Strip these out to prevent bypassing.
 stripchars = "!\"#%&'()*+,-./:;<=>?@[\\]^_`{|}~"
 
@@ -23,6 +26,9 @@ class profanitydoneright(commands.Cog):
 
     @commands.Cog.listener()
     async def on_message(self, message):
+        for chan in safechannels:
+            if message.channel.id == chan
+                return
         for word in words:
             for uword in message.content.lower().split(" "):
                 uword = uword.strip(stripchars)
@@ -37,6 +43,9 @@ class profanitydoneright(commands.Cog):
 
     @commands.Cog.listener()
     async def on_message_edit(self, orig, message):
+        for chan in safechannels:
+            if message.channel.id == chan:
+                return
         for word in words:
             for uword in message.content.lower().split(" "):
                 uword = uword.strip(stripchars)
