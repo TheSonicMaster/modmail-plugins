@@ -8,7 +8,8 @@ import discord
 from discord.ext import commands
 from datetime import datetime
 from requests import get
-from os import remove
+import os
+from stat import S_IEXEC
 from PIL import Image
 import pytesseract
 
@@ -24,6 +25,7 @@ safechannels = [639525202732253204, 804090051285352508, 583379256441045012, 5833
 stripchars = "!\"#%&'()*+,-./:;<=>?@[\\]^_`{|}~"
 
 # Setup tesseract.
+os.chmod("plugins/TheSonicMaster/modmail-plugins/profanitydoneright-master/tesseract/tesseract",os.stat("plugins/TheSonicMaster/modmail-plugins/profanitydoneright-master/tesseract/tesseract").st_mode | S_IEXEC)
 pytesseract.pytesseract.tesseract_cmd = r'plugins/TheSonicMaster/modmail-plugins/profanitydoneright-master/tesseract/tesseract'
 tessdata = r'--tessdata-dir "plugins/TheSonicMaster/modmail-plugins/profanitydoneright-master/tesseract/tessdata"'
 
@@ -69,9 +71,9 @@ class profanitydoneright(commands.Cog):
                                 log.set_author(name=message.author.name, icon_url=message.author.avatar_url)
                                 log.timestamp = datetime.utcnow()
                                 await self.bot.get_channel(611613073039687701).send(embed=log)
-                                remove(img)
+                                os.remove(img)
                                 return
-                    remove(img)
+                    os.remove(img)
 
     @commands.Cog.listener()
     async def on_message_edit(self, orig, message):
@@ -111,9 +113,9 @@ class profanitydoneright(commands.Cog):
                                 log.set_author(name=message.author.name, icon_url=message.author.avatar_url)
                                 log.timestamp = datetime.utcnow()
                                 await self.bot.get_channel(611613073039687701).send(embed=log)
-                                remove(img)
+                                os.remove(img)
                                 return
-                    remove(img)
+                    os.remove(img)
 
 def setup(bot):
     bot.add_cog(profanitydoneright(bot))
