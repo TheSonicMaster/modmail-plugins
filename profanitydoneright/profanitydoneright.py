@@ -5,14 +5,11 @@
 # Required modules.
 import discord
 from discord.ext import commands
-from requests import get
 from datetime import datetime
 
 # Load list of profane words.
-url = "https://raw.githubusercontent.com/TheSonicMaster/modmail-plugins/master/profanitydoneright/wordlist.txt"
-words = get(url).text.split("\n")
-# Trailing newline messes things up.
-words.pop()
+with open("plugins/TheSonicMaster/modmail-plugins/profanitydoneright-master/wordlist.txt", "r") as wordlist:
+    words = wordlist.read().splitlines()
 
 # Whitelisted channels.
 safechannels = [639525202732253204, 804090051285352508, 583379256441045012, 583379256441045012, 611613073039687701]
