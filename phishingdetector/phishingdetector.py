@@ -1,6 +1,6 @@
 import discord
 import requests
-import datetime
+from datetime import datetime
 from discord.ext import commands
 
 class phishingdetector(commands.Cog):
