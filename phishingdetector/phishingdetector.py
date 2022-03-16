@@ -8,6 +8,7 @@ class phishingdetector(commands.Cog):
         self.bot = bot
         r = requests.get("https://raw.githubusercontent.com/nikolaischunk/discord-phishing-links/main/txt/domain-list.txt")
         self.links = r.text.split("\n")
+        self.links.pop()
 
     @commands.Cog.listener()
     async def on_message(self, message):
