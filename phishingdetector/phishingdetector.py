@@ -1,11 +1,13 @@
 import discord
+import requests
 import datetime
 from discord.ext import commands
 
 class phishingdetector(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
-        self.links = open("./domain-list.txt", "r").read().split("\n")
+        r = requests.get("https://raw.githubusercontent.com/nikolaischunk/discord-phishing-links/main/txt/domain-list.txt")
+        self.links = r.text.split("\n")
 
     @commands.Cog.listener()
     async def on_message(self, message):
