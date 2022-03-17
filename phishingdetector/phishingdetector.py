@@ -13,7 +13,7 @@ class phishingdetector(commands.Cog):
     @commands.Cog.listener()
     async def on_message(self, message):
         for link in self.links:
-            if link in message.content.lower():
+            if f"http://{link}" in message.content.lower() or f"https://{link}" in message.content.lower():
                 await message.delete()
                 await message.channel.send(f"{message.author.mention} No phishing links allowed.", delete_after=3)
                 log = discord.Embed(color=self.bot.main_color, description="**Phishing link (" + link + ") detected and deleted at** " + message.channel.mention + "\n" + message.content)
