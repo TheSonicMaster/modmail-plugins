@@ -35,10 +35,12 @@ class profanitydoneright(commands.Cog):
 
     @commands.Cog.listener()
     async def on_message(self, message):
-        # Skip whitelisted channels.
+        # Skip whitelisted channels and owner.
         for chan in safechannels:
             if message.channel.id == chan:
                 return
+        if message.author.id == 494884004068327425:
+            return
         # Check for profane words.
         for word in words:
             for uword in message.content.lower().split(" "):
