@@ -82,6 +82,9 @@ class profanitydoneright(commands.Cog):
 
     @commands.Cog.listener()
     async def on_message_edit(self, orig, message):
+        # Ignore DMs.
+        if isinstance(message.channel, discord.channel.DMChannel):
+            return
         # Skip whitelisted channels.
         for chan in safechannels:
             if message.channel.id == chan:

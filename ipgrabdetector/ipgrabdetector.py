@@ -36,6 +36,9 @@ class ipgrabdetector(commands.Cog):
 
     @commands.Cog.listener()
     async def on_message(self, message):
+        # Ignore DMs.
+        if isinstance(message.channel, discord.channel.DMChannel):
+            return
         for link in links:
             if link in message.content:
                 await message.delete()
@@ -45,9 +48,12 @@ class ipgrabdetector(commands.Cog):
                 grabber.timestamp = datetime.utcnow()
                 await self.bot.get_channel(611613073039687701).send(embed=grabber)
                 break
-                
+
     @commands.Cog.listener()
     async def on_message_edit(self, before, after):
+        # Ignore DMs.
+        if isinstance(message.channel, discord.channel.DMChannel):
+            return
         for link in links:
             if link in after.content:
                 await after.delete()
