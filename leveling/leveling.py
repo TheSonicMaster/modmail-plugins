@@ -27,7 +27,7 @@ class Leveling(Cog):
     async def on_message(self, message: Message) -> None:
         if message.author.bot:
             return
-        if message.channel.id == 671069603048325131:
+        if message.channel.id == 671069603048325131 or message.channel.id == 804741038040285224:
             return
         if isinstance(message.channel, discord.channel.DMChannel):
             return
