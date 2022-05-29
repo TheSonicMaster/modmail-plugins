@@ -13,7 +13,7 @@ class Say(commands.Cog):
         if action == "steal":
             super = message.lower()
             if "sonic" in super or "tsm" in super or "owner" in super or "admin" in super or "staff" in super:
-                print("You got caught. Everything you stole in the past has been confiscated!")
+                message = "You got caught. Everything you stole in the past has been confiscated!"
             else:
                 message = "You successfully stole " + message + "!"
         elif action == "getcaught":
