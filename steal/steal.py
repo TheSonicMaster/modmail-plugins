@@ -4,20 +4,16 @@ from random import choice as select
 class Say(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
-        
+
     @commands.command()
     async def steal(self, ctx, *, message):
         """Steal something! Be careful not to get caught..."""
-        possibleactions = ["steal","steal","getcaught"]
+        possibleactions = ["steal","getcaught","getcaught"]
         action = select(possibleactions)
         if action == "steal":
             super = message.lower()
-            if "sonic" in super:
-                print("You got caught. Everything you stole in the past has been confiscated!")
-            elif "owner" in super:
-                print("You got caught. Everything you stole in the past has been confiscated!")
-            elif "admin" in super:
-                print("You got caught. Everything you stole in the past has been confiscated!")
+            if "sonic" in super or "tsm" in super or "owner" in super or "admin" in super or "staff" in super:
+                message = "You got caught. Everything you stole in the past has been confiscated!"
             else:
                 message = "You successfully stole " + message + "!"
         elif action == "getcaught":
@@ -41,7 +37,7 @@ class Say(commands.Cog):
                 if unit == "d":
                     possibledays = ["1","2","3","4","5","6","7"]
                     days = select(possibledays)
-                    message = "You got caught! Your punishment is a ban from this server for " + days + " days!\n*Note: This is only a joke, you won't actually get banned.*"
+                    message = "You got caught! Your punishment is a ban from this server for " + days + " days!\n*Note: This is only a joke, you won't actually get banned... or will you?*"
                 elif unit == "w":
                     possibleweeks = ["1","2","3","4"]
                     weeks = select(possibleweeks)

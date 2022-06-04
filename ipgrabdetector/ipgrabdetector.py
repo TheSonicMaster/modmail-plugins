@@ -1,5 +1,5 @@
+import discord
 from discord.ext import commands
-from discord import Embed
 from datetime import datetime
 
 links = [
@@ -36,23 +36,29 @@ class ipgrabdetector(commands.Cog):
 
     @commands.Cog.listener()
     async def on_message(self, message):
+        # Ignore DMs.
+        if isinstance(message.channel, discord.channel.DMChannel):
+            return
         for link in links:
             if link in message.content:
                 await message.delete()
                 await message.channel.send(f"{message.author.mention} Your message has been deleted for containing an IP grabber link.", delete_after=3)
-                grabber = Embed(color=self.bot.main_color, description="**IP grabber link detected at** " + message.channel.mention + "\n" + link)
+                grabber = discord.Embed(color=self.bot.main_color, description="**IP grabber link detected at** " + message.channel.mention + "\n" + link)
                 grabber.set_author(name=message.author.name, icon_url=message.author.avatar_url)
                 grabber.timestamp = datetime.utcnow()
                 await self.bot.get_channel(611613073039687701).send(embed=grabber)
                 break
-                
+
     @commands.Cog.listener()
     async def on_message_edit(self, before, after):
+        # Ignore DMs.
+        if isinstance(message.channel, discord.channel.DMChannel):
+            return
         for link in links:
             if link in after.content:
                 await after.delete()
                 await after.channel.send(f"{after.author.mention} Your message has been deleted for containing an IP grabber link.", delete_after=3)
-                grabber = Embed(color=self.bot.main_color, description="**IP grabber link detected at** " + after.channel.mention + "\n" + link)
+                grabber = discord.Embed(color=self.bot.main_color, description="**IP grabber link detected at** " + after.channel.mention + "\n" + link)
                 grabber.set_author(name=after.author.name, icon_url=after.author.avatar_url)
                 grabber.timestamp = datetime.utcnow()
                 await self.bot.get_channel(611613073039687701).send(embed=grabber)
