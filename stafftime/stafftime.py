@@ -10,7 +10,7 @@ class stafftime(commands.Cog):
         
     @commands.Cog.listener()
     async def on_message(self, message):
-        if not message.user.bot:
+        if not message.author.bot:
             if "<@&581196949383020584>" in message.content.lower():
                 await message.channel.send(embed=getStaffEmbed())
             elif "<@!494884004068327425>" or "<@494884004068327425>" in message.content.lower():
