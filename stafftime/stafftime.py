@@ -17,7 +17,6 @@ def getTime(timezone):
 class stafftime(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
-        self.inst = stafftime()
         
     @commands.Cog.listener()
     async def on_message(self, message):
