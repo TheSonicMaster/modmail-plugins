@@ -8,6 +8,16 @@ class stafftime(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
         
+    def getStaffEmbed():
+        staffeb=discord.Embed(color=self.bot.main_color, title="Staff timings", url="https://github.com/clerickx/modmail-plugins/tree/master/stafftime")
+        staffeb.add_field(name="TheSonicMaster", value=getTime('Europe/London'), inline=True)
+        staffeb.add_field(name="Captain riggs:tm:", value=getTime('Asia/Kolkata'), inline=True)
+        staffeb.add_field(name="MinecatMeow", value=getTime('US/Eastern'), inline=True)
+        return staffeb
+        
+    def getTime(timezone):
+        return datetime.datetime.now(pytz.timezone(timezone)).strftime("%H:%M (%I:%M %p)")
+        
     @commands.Cog.listener()
     async def on_message(self, message):
         if not message.author.bot:
@@ -26,16 +36,6 @@ class stafftime(commands.Cog):
     @commands.command()
     async def stafftime(self, ctx):
         await ctx.send(embed=getStaffEmbed())
-       
-    def getStaffEmbed():
-        staffeb=discord.Embed(color=self.bot.main_color, title="Staff timings", url="https://github.com/clerickx/modmail-plugins/tree/master/stafftime")
-        staffeb.add_field(name="TheSonicMaster", value=getTime('Europe/London'), inline=True)
-        staffeb.add_field(name="Captain riggs:tm:", value=getTime('Asia/Kolkata'), inline=True)
-        staffeb.add_field(name="MinecatMeow", value=getTime('US/Eastern'), inline=True)
-        return staffeb
-        
-    def getTime(timezone):
-        return datetime.datetime.now(pytz.timezone(timezone)).strftime("%H:%M (%I:%M %p)")
 
 def setup(bot):
     bot.add_cog(stafftime(bot))
