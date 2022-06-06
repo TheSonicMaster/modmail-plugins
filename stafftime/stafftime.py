@@ -21,15 +21,15 @@ class stafftime(commands.Cog):
     @commands.Cog.listener()
     async def on_message(self, message):
         if not message.author.bot:
-            if "<@&581196949383020584>" in message.content.split():
+            if "<@&581196949383020584>" in message.content.lower():
                 await message.channel.send(embed=getStaffEmbed())
-            elif self.bot.get_user("494884004068327425").mentioned_in(message):
+            elif "<@!494884004068327425" in message.content.lower():
                 thesonicmaster = getTime('Europe/London')
                 await message.channel.send(f"Please do not ping The Sonic Master. It is considered rude and will not make The Sonic Master respond any faster, especially if The Sonic Master is offline. Be patient for a response and do not expect one immediately.\n\nThe current time of The Sonic Master is {thesonicmaster} (Timezones Exist).")
-            elif self.bot.get_user("735550905721684098").mentioned_in(message):
+            elif "<@!735550905721684098>" in message.content.lower():
                 captain = getTime('Asia/Kolkata')
                 await message.channel.send(f"The current time of Captain riggs:tm: is {captain}. Depending on this time you may need to be patient for a response.")
-            elif self.bot.get_user("845406066505285642").mentioned_in(message):
+            elif "<@!845406066505285642>" in message.content.lower():
                 minecat = getTime('US/Eastern')
                 await message.channel.send(f"The current time of MinecatMeow is {minecat}. Depending on this time you may need to be patient for a response.")
     
