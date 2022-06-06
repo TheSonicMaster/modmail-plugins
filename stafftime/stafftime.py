@@ -17,19 +17,22 @@ def getTime(timezone):
 class stafftime(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
-        
+        self.thesonicmaster = bot.get_user("494884004068327425")
+        self.captainriggs = bot.get_user("735550905721684098")
+        self.minecatmeow = bot.get_user("845406066505285642")
+
     @commands.Cog.listener()
     async def on_message(self, message):
         if not message.author.bot:
             if "<@&581196949383020584>" in message.content.lower():
                 await message.channel.send(embed=getStaffEmbed())
-            elif "<@!494884004068327425>" or "<@494884004068327425>" in message.content.lower():
+            elif self.thesonicmaster.mentioned_in(message):
                 thesonicmaster = getTime('Europe/London')
                 await message.channel.send(f"Please do not ping The Sonic Master. It is considered rude and will not make The Sonic Master respond any faster, especially if The Sonic Master is offline. Be patient for a response and do not expect one immediately.\n\nThe current time of The Sonic Master is {thesonicmaster} (Timezones Exist).")
-            elif "<@!735550905721684098>" or "<@735550905721684098>" in message.content.lower():
+            elif self.captainriggs.mentioned_in(message):
                 captain = getTime('Asia/Kolkata')
                 await message.channel.send(f"The current time of Captain riggs:tm: is {captain}. Depending on this time you may need to be patient for a response.")
-            elif "<@!845406066505285642>" or "<@845406066505285642>" in message.content.lower():
+            elif self.minecatmeow.mentioned_in(message):
                 minecat = getTime('US/Eastern')
                 await message.channel.send(f"The current time of MinecatMeow is {minecat}. Depending on this time you may need to be patient for a response.")
     
