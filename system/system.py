@@ -1,8 +1,8 @@
 import discord
-import os
+import subprocess
 from discord.ext import commands
 
-class Say(commands.Cog):
+class system(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
         
@@ -11,9 +11,14 @@ class Say(commands.Cog):
         """Run system (shell) commands directly from Discord! By The Sonic Master."""
         async with ctx.typing():
             command = message + " 2>&1"
-            stream = os.popen(command)
-            output = stream.read()
-        if output == "":
+            command = ''.join(command).split()
+            try:
+                output = subprocess.run(command, capture_output=True, text=True, check=True, timeout=20)
+            except subprocess.TimeoutExpired:
+                error = True
+        if error:
+            await ctx.send("Error timeout of 20 seconds has expired")
+        elif output == "":
             await ctx.send("Command produced no output.")
         elif len(output) > 2000:
             outfile = open("output.txt","w")
@@ -24,4 +29,4 @@ class Say(commands.Cog):
         else:
             await ctx.send("```\n" + output + "\n```")
 def setup(bot):
-    bot.add_cog(Say(bot))
+    bot.add_cog(system(bot))
