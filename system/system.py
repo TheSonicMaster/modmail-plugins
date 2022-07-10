@@ -15,10 +15,10 @@ class system(commands.Cog):
             try:
                 output = subprocess.run(command, capture_output=True, text=True, check=True, timeout=20).stdout
             except subprocess.TimeoutExpired:
-                error = True
-        if error:
-            await ctx.send("Error timeout of 20 seconds has expired")
-        elif output == "":
+                await ctx.send("Error timeout of 20 seconds has expired")
+                return
+
+        if output == "":
             await ctx.send("Command produced no output.")
         elif len(output) > 2000:
             outfile = open("output.txt","w")
