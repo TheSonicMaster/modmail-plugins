@@ -13,7 +13,7 @@ class system(commands.Cog):
             command = message + " 2>&1"
             command = ''.join(command).split()
             try:
-                output = subprocess.run(command, capture_output=True, text=True, check=True, timeout=20)
+                output = subprocess.run(command, capture_output=True, text=True, check=True, timeout=20).stdout
             except subprocess.TimeoutExpired:
                 error = True
         if error:
