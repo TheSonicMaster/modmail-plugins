@@ -10,7 +10,7 @@ class system(commands.Cog):
     async def system(self, ctx, *, message):
         """Run system (shell) commands directly from Discord! By The Sonic Master."""
         async with ctx.typing():
-            command = message + " 2>&1"
+            command = message
             command = ''.join(command).split()
             try:
                 output = subprocess.run(command, capture_output=True, text=True, check=True, timeout=20).stdout
