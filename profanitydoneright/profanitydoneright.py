@@ -9,9 +9,22 @@ from discord.ext import commands
 from datetime import datetime
 from requests import get
 import os
+from pathlib import Path as path
 from stat import S_IEXEC
 from PIL import Image
 import pytesseract
+
+# Download required stuff.
+TESSVER = "5.2.0"
+tessbin = get("https://github.com/DanielMYT/tesseract-static/releases/download/tesseract-" + TESSVER + "/tesseract")
+with open("tesseract","wb") as f:
+    f.write(tessbin.content)
+f.close()
+path("tessdata").mkdir(parents=True,exist_ok=True)
+tessdat = get("https://raw.githubusercontent.com/tesseract-ocr/tessdata/4.1.0/eng.traineddata")
+with open("tessdata/eng.traineddata","wb") as f:
+    f.write(tessdat.content)
+f.close()
 
 # Load list of profane words.
 with open("plugins/TheSonicMaster/modmail-plugins/profanitydoneright-master/wordlist.txt", "r") as wordlist:
@@ -25,9 +38,9 @@ safechannels = [639525202732253204, 804090051285352508, 583379256441045012, 5833
 stripchars = "!\"#%&'()*+,-./:;<=>?@[\\]^_`{|}~"
 
 # Setup tesseract.
-os.chmod("plugins/TheSonicMaster/modmail-plugins/profanitydoneright-master/tesseract/tesseract",os.stat("plugins/TheSonicMaster/modmail-plugins/profanitydoneright-master/tesseract/tesseract").st_mode | S_IEXEC)
-pytesseract.pytesseract.tesseract_cmd = r'plugins/TheSonicMaster/modmail-plugins/profanitydoneright-master/tesseract/tesseract'
-tessdata = r'--tessdata-dir "plugins/TheSonicMaster/modmail-plugins/profanitydoneright-master/tesseract/tessdata"'
+os.chmod("tesseract",os.stat("tesseract").st_mode | S_IEXEC)
+pytesseract.pytesseract.tesseract_cmd = r'./tesseract'
+tessdata = r'--tessdata-dir "tessdata"'
 
 class profanitydoneright(commands.Cog):
     def __init__(self, bot):
