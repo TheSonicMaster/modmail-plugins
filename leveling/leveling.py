@@ -1,6 +1,7 @@
 """
 Leveling plugin for Modmail.
 Written by Papiersnipper.
+Modified by The Sonic Master.
 All rights reserved.
 """
 
@@ -30,6 +31,9 @@ class Leveling(Cog):
         if message.channel.id == 583379256441045012 or message.channel.id == 671069603048325131 or message.channel.id == 804741038040285224:
             return
         if isinstance(message.channel, discord.channel.DMChannel):
+            return
+        lastmessage = [msg async for msg in message.channel.history(limit=2)][1]
+        if message.author.id == lastmessage.author.id:
             return
         try:
             amount = (await self.db.find_one({"_id": "leveling-config"}))["amount_per_message"]
